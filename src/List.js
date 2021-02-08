@@ -1,26 +1,43 @@
 import React from "react";
-import { FaEdit, FaTrash, FaCheckDouble } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import "./App.css";
 
-const List = ({ tasks, removeTask, editTask, toggleStatus }) => {
+const List = ({ tasks, removeTask, editTask, toggleStatus, filtered }) => {
+  let displayedTasks = tasks;
+  if (filtered === "completed") {
+    displayedTasks = tasks.filter((task) => task.complete);
+  }
+  if (filtered === "pending") {
+    displayedTasks = tasks.filter((task) => !task.complete);
+  }
   return (
-    <div>
-      {tasks.map((task) => {
+    <div className="task-container">
+      {displayedTasks.map((task) => {
         const { id, title, complete } = task;
         return (
-          <article key={id}>
-            <label style={{ color: complete ? "green" : "red" }}>
+          <article className="task-item" key={id}>
+            <label>
               <input
+                className="checkbox"
                 type="checkbox"
                 checked={complete}
                 onChange={() => toggleStatus(id)}
               />
-              <p>{title}</p>
             </label>
+            <p className={complete ? "complete" : "pending"}>{title}</p>
             <div>
-              <button type="button" onClick={() => editTask(id)}>
+              <button
+                className="edit-btn"
+                type="button"
+                onClick={() => editTask(id)}
+              >
                 <FaEdit />
               </button>
-              <button type="button" onClick={() => removeTask(id)}>
+              <button
+                className="delete-btn"
+                type="button"
+                onClick={() => removeTask(id)}
+              >
                 <FaTrash />
               </button>
             </div>

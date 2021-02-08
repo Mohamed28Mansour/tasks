@@ -1,0 +1,190 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+main {
+  min-height: 100vh;
+  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  color: #426696;
+  font-weight: 600;
+  opacity: 0.8;
+  text-transform: capitalize;
+}
+
+.glass-center {
+  background: white;
+  min-height: 80vh;
+  width: 60%;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+  );
+  border-radius: 3rem;
+}
+
+.form-control {
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 2rem;
+}
+
+.input-space {
+  width: 70%;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-bar {
+  width: 40%;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+  );
+  padding: 0.5rem;
+  border-radius: 2rem;
+  border: none;
+}
+
+.submit-btn {
+  background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+  color: #426696;
+  font-weight: 600;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.filtering {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
+}
+
+.filter-btn {
+  width: 100px;
+  background: white;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.clear-btn {
+  text-transform: capitalize;
+  width: 10rem;
+  height: 1.5rem;
+  display: grid;
+  align-items: center;
+  background: transparent;
+  border-color: transparent;
+  color: lightsalmon;
+  margin: 0 auto;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-top: 1.25rem;
+  font-weight: 600;
+}
+.clear-btn:hover {
+  color: red;
+}
+
+.edit-btn,
+.delete-btn {
+  background: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  font-size: 0.7rem;
+  margin: 0 0.15rem;
+}
+.edit-btn {
+  color: blue;
+  margin-left: 10px;
+}
+.edit-btn:hover {
+  color: green;
+}
+.delete-btn {
+  color: lightcoral;
+}
+
+.delete-btn:hover {
+  color: red;
+}
+
+.task-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.task-item {
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0.3)
+  );
+  border: none;
+  width: 40%;
+  padding: 0.5rem;
+  margin-bottom: 20px;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.complete,
+.pending {
+  display: block;
+  font-weight: 600;
+}
+
+.complete::first-letter,
+.pending::first-letter {
+  text-transform: uppercase;
+}
+
+.complete {
+  text-decoration: line-through;
+}
+
+.alert {
+  margin-bottom: 1rem;
+  height: 1.25rem;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  font-size: 0.7rem;
+  border-radius: 0.25rem;
+  text-transform: capitalize;
+}
+.alert-danger {
+  color: #721c24;
+  background: #f8d7da;
+}
+.alert-success {
+  color: #155724;
+  background: #d4edda;
+}

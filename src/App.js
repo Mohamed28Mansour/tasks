@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import List from "./List";
 import Alert from "./Alert";
+import "./App.css";
 
 const getLocalStorage = () => {
-  let list = localStorage.getItem("list");
+  const list = localStorage.getItem("list");
   if (list) {
-    return JSON.parse(localStorage.getItem("list"));
+    return JSON.parse(list);
   } else {
     return [];
   }
 };
 
-function App() {
+const App = () => {
   const [task, setTask] = useState("");
-  const [list, setList] = useState(getLocalStorage());
+  const [list, setList] = useState(getLocalStorage("list", []));
   const [alert, setAlert] = useState({
     show: false,
     message: "",
@@ -21,6 +22,7 @@ function App() {
   });
   const [editID, setEditID] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [filtered, setFiltered] = useState("all");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,7 +58,7 @@ function App() {
   };
 
   const clearList = () => {
-    showAlert(true, "list successfully cleared", "success");
+    showAlert(true, "list successfully cleared", "danger");
     setList([]);
   };
 
@@ -87,33 +89,60 @@ function App() {
   }, [list]);
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
-        {alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />}
-        <h2>what do you want to do today?</h2>
-        <div>
-          <input
-            type="text"
-            placeholder="e.g. create react app"
-            value={task}
-            onChange={(e) => setTask(e.target.value)}
-          />
-          <button>{isEditing ? "edit" : "submit"}</button>
-        </div>
-      </form>
-      {list.length > 0 && (
-        <div>
-          <List
-            tasks={list}
-            removeTask={removeTask}
-            editTask={editTask}
-            toggleStatus={toggleStatus}
-          />
-          <button onClick={clearList}>clear list</button>
-        </div>
-      )}
-    </section>
+    <main>
+      <section className="glass-center">
+        <form className="form-control" onSubmit={handleSubmit}>
+          {alert.show && (
+            <Alert {...alert} removeAlert={showAlert} list={list} />
+          )}
+          <h2>what do you want to do today?</h2>
+          <div className="input-space">
+            <input
+              className="input-bar"
+              type="text"
+              placeholder="e.g. create react app"
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
+            />
+            <button className="submit-btn">
+              {isEditing ? "edit" : "submit"}
+            </button>
+          </div>
+        </form>
+        {list.length > 0 && (
+          <section>
+            <div className="filtering">
+              <button className="filter-btn" onClick={() => setFiltered("all")}>
+                All
+              </button>
+              <button
+                className="filter-btn"
+                onClick={() => setFiltered("completed")}
+              >
+                Complete
+              </button>
+              <button
+                className="filter-btn"
+                onClick={() => setFiltered("pending")}
+              >
+                Pending
+              </button>
+            </div>
+            <List
+              tasks={list}
+              removeTask={removeTask}
+              editTask={editTask}
+              toggleStatus={toggleStatus}
+              filtered={filtered}
+            />
+            <button className="clear-btn" onClick={clearList}>
+              clear list
+            </button>
+          </section>
+        )}
+      </section>
+    </main>
   );
-}
+};
 
 export default App;
