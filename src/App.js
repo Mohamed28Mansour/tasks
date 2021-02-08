@@ -92,9 +92,7 @@ const App = () => {
     <main>
       <section className="glass-center">
         <form className="form-control" onSubmit={handleSubmit}>
-          {alert.show && (
-            <Alert {...alert} removeAlert={showAlert} list={list} />
-          )}
+          {alert.show && <Alert {...alert} showAlert={showAlert} list={list} />}
           <h2>what do you want to do today?</h2>
           <div className="input-space">
             <input
